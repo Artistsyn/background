@@ -300,6 +300,9 @@ impl BackgroundPlugin {
 impl QuartzPlugin for BackgroundPlugin {
     fn name(&self) -> &str { "background" }
 
+    fn as_any(&self) -> &dyn std::any::Any { self }
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any { self }
+
     fn on_update(&mut self, _canvas: &mut Canvas, dt: f32) {
         let Some(tr) = self.transition.as_mut() else { return };
         tr.elapsed += dt;
